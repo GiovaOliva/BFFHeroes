@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./config/env.json');
 const apiRoutes = require('./routes/api');
+const dbconnect = require('./dbconfig/config');
+
+dbconnect()
 
 const app = express();
 
