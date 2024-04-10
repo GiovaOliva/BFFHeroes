@@ -1,12 +1,13 @@
-const marvelService = require('../services/marvelService');
+const { setHeroesData } = require('../modulos/moduloHeroes');
 
-exports.getHeroes = async (req, res) => {
+const getHeroes = async (req, res) => {
   try {
-    const { offset, searchString } = req.query;
-    const heroes = await marvelService.getHeroes(offset, searchString);
-    res.json(heroes);
+    const heroes = await setHeroesData(req);
+    res.status(200).json(heroes);
   } catch (error) {
     console.error('Error fetching Marvel characters:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+module.exports = getHeroes;
